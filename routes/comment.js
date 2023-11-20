@@ -1,9 +1,7 @@
 import { Router } from "express";
+import commentCtrl from '../controllers/comment.js';
 
 const router = Router();
-
-const commentCtrl = require('../controllers/comment.js')
-
 
 router.post('/:id', commentCtrl.create)
 router.delete('/:id', commentCtrl.deleteOne)

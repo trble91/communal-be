@@ -1,8 +1,7 @@
 import { Router } from "express";
+import usersCtrl from '../controllers/users.js';
 
 const router = Router();
-
-const usersCtrl = require('../controllers/users.js')
 
 router.post('/', usersCtrl.create)
 router.post('/login', usersCtrl.logIn)

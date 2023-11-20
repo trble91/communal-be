@@ -1,6 +1,6 @@
-const User = require('../models/users.js')
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt');
+import User from '../models/users.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 function createJWT(user){
     return jwt.sign(

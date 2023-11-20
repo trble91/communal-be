@@ -1,15 +1,13 @@
 import { Router } from "express";
-
+import eventCtrl from'../controllers/event.js';
 const router = Router();
 
-const eventCtrl = require('../controllers/event.js')
 
-
-router.post('/:id', commentCtrl.create)
-router.delete('/:id', commentCtrl.deleteOne)
-router.patch('/:id', commentCtrl.update)
-router.patch('/likes/:id', commentCtrl.addLike)
-router.patch('/dislikes/:id', commentCtrl.addDislike)
+router.post('/:id', eventCtrl.create)
+router.delete('/:id', eventCtrl.deleteOne)
+router.patch('/:id', eventCtrl.update)
+router.patch('/likes/:id', eventCtrl.addLike)
+router.patch('/dislikes/:id', eventCtrl.addDislike)
 
 
 export default router;
