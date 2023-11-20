@@ -1,8 +1,8 @@
-const Post = require("../models/post");
-const User = require("../../models/user");
-const Event = require('../models/event');
-const Comment = require("../models/comment");
+import Post from "../models/post";
+import User from "../../models/user";
+import Comment from "../models/comment";
 
+//syntax error 
 async function create(req, res) {
   try {
     const post = await Post.findById(req.params.id);

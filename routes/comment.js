@@ -12,4 +12,4 @@ router.patch('/likes/:id', commentCtrl.addLike)
 router.patch('/dislikes/:id', commentCtrl.addDislike)
 
 
-module.exports = router
+export default router;

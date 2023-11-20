@@ -1,7 +1,8 @@
 import express from "express";
-import path from "path";
+// import path from "path";
 import logger from "morgan";
 import cors from "cors";
+import routes from "./routes/index.js";
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -12,14 +13,14 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.static(path.join(new URL(import.meta.url).pathname, 'build')));
 
 
 // Put API routes here, before the "catch all" route
-app.use('/users', require('./routes/users.js'))
-app.use('/post', require('./routes/post.js'))
-app.use('/comment', require('./routes/comment.js'))
-app.use('/event', require('./routes/event.js'))
+app.use('/users', routes)
+app.use('/post', routes)
+app.use('/comment', routes)
+app.use('/event', routes)
 
 db.on("connected", () => {
     console.clear();
