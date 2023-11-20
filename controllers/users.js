@@ -1,4 +1,4 @@
-const User = require('../../models/user')
+const User = require('../models/users.js')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 
@@ -10,7 +10,7 @@ function createJWT(user){
     )
 }
 
-async function create(req, res, next) {
+async function create(req, res) {
     // just for right now I want to see if this is connected
     try {
         const takenUser = await User.findOne({userName: req.body.userName})
@@ -27,7 +27,7 @@ async function create(req, res, next) {
 }
 
 
-async function logIn(req, res, next) {
+async function logIn(req, res) {
     try {
         const user = await User.findOne({userName: req.body.userName})
         if(!user){
@@ -45,7 +45,7 @@ async function logIn(req, res, next) {
     }
 }
 
-async function savePost(req, res, next) {
+async function savePost(req, res) {
     const postId = req.params.postId
     try {
         const user = await User.findById(req.user._id)
@@ -61,7 +61,7 @@ async function savePost(req, res, next) {
     }
 }
 
-async function getSavedResources(req, res, next) {
+async function getSavedResources(req, res) {
     try {
         const user = await User.findById(req.user._id)
         await user.populate('savedResources')

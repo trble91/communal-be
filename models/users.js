@@ -1,10 +1,11 @@
-import bcrypt from 'bcrypt';
 import mongoose from "../db/connection.js";
+// import bcrypt from 'bcrypt';
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
+
 const SALT_ROUNDS = 8
-const userSchema = new Schema({
 
+const UserSchema = new Schema({
     username: {
         type: String,
         required: true,
@@ -16,9 +17,9 @@ const userSchema = new Schema({
         minLength: 8,
         required: true
     },
-    notifications: [{
-        type: String,
-    }],
+    notifications: {
+        type: [String],
+    },
     isAdmin: {
         type: Boolean,
         default: false
@@ -37,10 +38,10 @@ const userSchema = new Schema({
     }
 })
 
-userSchema.pre('save', async function(next){
-    if (!this.isModified('password')) return next()
-    this.password = await bcrypt.hash(this.password, SALT_ROUNDS)
-    return next()
-})
+// userSchema.pre('save', async function(next){
+//     if (!this.isModified('password')) return next()
+//     this.password = await bcrypt.hash(this.password, SALT_ROUNDS)
+//     return next()
+// })
 
-export default mongoose.model('User', userSchema)
+export default mongoose.model('User', UserSchema)

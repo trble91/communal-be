@@ -1,12 +1,13 @@
-const express = require('express');
-const path = require('path');
-const logger = require('morgan');
-const cors = require('cors')
+import express from "express";
+import path from "path";
+import logger from "morgan";
+import cors from "cors";
 
-require('dotenv').config()
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(logger('dev'));
@@ -22,9 +23,11 @@ app.use('/event', require('./routes/event.js'))
 
 db.on("connected", () => {
     console.clear();
+    console.log("Connected to MongoDB!");
+  });
+
     app.listen(PORT, () => {
       process.env.NODE_ENV === "production"
-        ? console.log(`Express server running in production on port ${PORT}\n\n`)
-        : console.log(`Express server running in development on: ${PORT}`);
+      ? console.log(`Express server running in production on port ${PORT}\n\n`)
+      : console.log(`Express server running in development on: ${PORT}`);
     });
-  });
